@@ -19,7 +19,6 @@ export const leftGradient: SxProps = {
 };
 
 export const rightGradient: SxProps = {
-  ...flexFill,
   background: "linear-gradient(to right, rgba(178, 0, 255, 0.5), rgba(178, 0, 255, 0))",
 };
 

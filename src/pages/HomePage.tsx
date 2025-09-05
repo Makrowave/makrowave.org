@@ -1,39 +1,13 @@
-import { Avatar, Box, Link, Typography } from "@mui/joy";
+import { Box, Link, Typography } from "@mui/joy";
 import { TechnologyCard, type CardProps } from "../components/TechnologyCard";
-import { Tabulation } from "../components/Tabulation";
-import { BlueskyIcon } from "../components/icons/BlueskyIcon";
-import SteamIcon from "../components/icons/SteamIcon";
-import DiscordIcon from "../components/icons/DiscordIcon";
-import { EmailIcon } from "../components/icons/EmailIcon";
-import { GithubIcon } from "../components/icons/GithubIcon";
+import Tabulation from "../components/Tabulation";
+import Me from "../components/Me";
 
 export const HomePage = () => {
   return (
     <Box sx={{ m: "40px", gap: 6, display: "flex", flexDirection: "column", flex: 1 }}>
       <Box sx={{ display: "flex", gap: 10 }}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          <Avatar src='/src/assets/avatar.png' sx={{ width: "250px", height: "250px", border: "2px solid white" }} />
-          <Link href='#' sx={{ gap: 1 }}>
-            <DiscordIcon />
-            makrowave
-          </Link>
-          <Link href='https://github.com/Makrowave' sx={{ gap: 1 }}>
-            <GithubIcon />
-            Github
-          </Link>
-          <Link href='https://bsky.app/profile/makrowave.bsky.social' sx={{ gap: 1 }}>
-            <BlueskyIcon />
-            Bluesky
-          </Link>
-          <Link href='https://steamcommunity.com/id/Makrowave' sx={{ gap: 1 }}>
-            <SteamIcon />
-            Steam
-          </Link>
-          <Link href='mailto:maksstyzej@gmail.com' sx={{ gap: 1 }}>
-            <EmailIcon />
-            maksstyzej@gmail.com
-          </Link>
-        </Box>
+        <Me />
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start" }}>
           <Typography level='h1' textColor={"common.white"} fontSize={50}>
             Hello, I'm Makrowave

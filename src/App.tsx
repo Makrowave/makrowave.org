@@ -3,12 +3,15 @@ import { background } from "./styles/backgroundStyles";
 import { RouterProvider } from "react-router";
 import router from "./router";
 import theme from "./styles/theme";
+import { GradientBackground } from "./components/GradientBackground";
 
 const App = () => {
   return (
     <CssVarsProvider theme={theme}>
       <Box sx={background}>
-        <RouterProvider router={router} />
+        <GradientBackground>
+          <RouterProvider router={router} />
+        </GradientBackground>
       </Box>
     </CssVarsProvider>
   );

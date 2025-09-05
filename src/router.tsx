@@ -1,10 +1,10 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router";
-import { GradientLayout } from "./components/GradientLayout";
 import { HomePage } from "./pages/HomePage";
+import Layout from "./components/Layout";
 
 const routes = createRoutesFromElements(
   <>
-    <Route Component={GradientLayout}>
+    <Route Component={Layout}>
       <Route index Component={HomePage} />
     </Route>
   </>
