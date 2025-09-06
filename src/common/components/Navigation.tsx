@@ -1,7 +1,7 @@
 import { Box, Divider } from '@mui/joy';
 import { useRef, useLayoutEffect, useState } from 'react';
 import NavButton from './NavButton';
-import { Pages } from '../pages/pages';
+import { Pages } from '../../pages/pages';
 
 export type Page = {
   href: Pages;

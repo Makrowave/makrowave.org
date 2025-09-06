@@ -4,7 +4,7 @@ import {
   Route,
 } from 'react-router';
 import { HomePage } from './pages/HomePage';
-import Layout from './components/Layout';
+import Layout from './common/components/Layout';
 import { Pages } from './pages/pages';
 import BlogPage from './pages/BlogPage';
 import ProjectsPage from './pages/ProjectsPage';

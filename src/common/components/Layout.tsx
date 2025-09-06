@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/joy';
 import { Outlet } from 'react-router';
-import { translucentBlur } from '../styles/backgroundStyles';
+import { translucentBlur } from '../../styles/backgroundStyles';
 import Navigation from './Navigation';
 import { Copyright } from '@mui/icons-material';
 

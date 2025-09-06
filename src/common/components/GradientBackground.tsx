@@ -3,7 +3,7 @@ import {
   leftGradient,
   rightGradient,
   topGradient,
-} from '../styles/backgroundStyles';
+} from '../../styles/backgroundStyles';
 import type { ReactElement } from 'react';
 
 export const GradientBackground = ({

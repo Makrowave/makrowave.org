@@ -1,7 +1,10 @@
 import { Box, Link, Typography } from '@mui/joy';
-import { TechnologyCard, type CardProps } from '../components/TechnologyCard';
-import Tabulation from '../components/Tabulation';
-import Me from '../components/Me';
+import {
+  TechnologyCard,
+  type CardProps,
+} from '../common/components/TechnologyCard';
+import Tabulation from '../common/components/Tabulation';
+import Me from '../common/components/Me';
 
 export const HomePage = () => {
   return (

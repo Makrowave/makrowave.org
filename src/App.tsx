@@ -3,7 +3,7 @@ import { background } from './styles/backgroundStyles';
 import { RouterProvider } from 'react-router';
 import router from './router';
 import theme from './styles/theme';
-import { GradientBackground } from './components/GradientBackground';
+import { GradientBackground } from './common/components/GradientBackground';
 
 const App = () => {
   return (
