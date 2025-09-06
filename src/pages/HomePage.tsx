@@ -102,4 +102,19 @@ const cards: CardProps[] = [
       </>
     ),
   },
+  {
+    title: "Paint.NET",
+    href: "https://www.getpaint.net/",
+    img: "/src/assets/paint.png",
+    text: (
+      <>
+        <Tabulation />
+        Really good image editor - MS Paint-esque but has layers, mix-modes, transparency and other things you would
+        expect from a good editor. Handles image resizing well, anchors etc. - just check it out. I use it for pixelart
+        when I need to do something for minecraft mods / modpacks. Would be fun to paint their logo in pixelart.{" "}
+        <b>Note: you can use Paint.NET for other things than pixelart</b>
+      </>
+    ),
+    leftImg: true,
+  },
 ];

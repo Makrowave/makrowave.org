@@ -1,17 +1,18 @@
 import { Box, Divider } from "@mui/joy";
 import { useRef, useLayoutEffect, useState } from "react";
 import NavButton from "./NavButton";
+import { Pages } from "../pages/pages";
 
 export type Page = {
-  href: string;
+  href: Pages;
   label: string;
 };
 
 const pages = [
-  { href: "/", label: "Home" },
-  { href: "/blog", label: "Random Thoughts" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
+  { href: Pages.Home, label: "Home" },
+  { href: Pages.Blog, label: "Random Thoughts" },
+  { href: Pages.Projects, label: "Projects" },
+  { href: Pages.Experience, label: "Experience" },
 ];
 
 const Navigation = () => {
