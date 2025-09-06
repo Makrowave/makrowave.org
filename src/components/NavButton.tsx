@@ -1,9 +1,20 @@
-import { NavLink } from "react-router";
-import type { Page } from "./Navigation";
-import { Link } from "@mui/joy";
+import { NavLink } from 'react-router';
+import type { Page } from './Navigation';
+import { Link } from '@mui/joy';
 
-const NavButton = ({ page, navWidth, idx, total }: { page: Page; navWidth: number; idx: number; total: number }) => {
-  const gradient = "linear-gradient(to right, rgba(225,155,255,1), rgba(255,255,255,1), rgba(169,252,214,1))";
+const NavButton = ({
+  page,
+  navWidth,
+  idx,
+  total,
+}: {
+  page: Page;
+  navWidth: number;
+  idx: number;
+  total: number;
+}) => {
+  const gradient =
+    'linear-gradient(to right, rgba(225,155,255,1), rgba(255,255,255,1), rgba(169,252,214,1))';
 
   return (
     <Link
@@ -13,34 +24,34 @@ const NavButton = ({ page, navWidth, idx, total }: { page: Page; navWidth: numbe
       sx={{
         px: 1,
         py: 0.8,
-        textDecoration: "none",
-        fontWeight: "bold",
+        textDecoration: 'none',
+        fontWeight: 'bold',
         background: gradient,
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text",
-        color: "transparent",
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        color: 'transparent',
         backgroundSize: `${navWidth}px 100%`,
         backgroundPosition: `${(idx / total) * 100}% 0`,
-        transition: "all 0.3s ease",
+        transition: 'all 0.3s ease',
 
-        "&::after": {
+        '&::after': {
           content: `"${page.label}"`,
-          position: "absolute",
-          textDecoration: "none",
-          fontWeight: "bold",
+          position: 'absolute',
+          textDecoration: 'none',
+          fontWeight: 'bold',
           background: gradient,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "black",
-          backgroundClip: "text",
-          color: "black",
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'black',
+          backgroundClip: 'text',
+          color: 'black',
           opacity: 0,
           backgroundSize: `${navWidth}px 100%`,
           backgroundPosition: `${(idx / total) * 100}% 0`,
-          transition: "all 0.3s ease",
+          transition: 'all 0.3s ease',
         },
 
-        "&:hover::after": {
+        '&:hover::after': {
           opacity: 0.3, // adjust darkness
         },
       }}
