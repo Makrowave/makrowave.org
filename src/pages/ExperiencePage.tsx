@@ -22,7 +22,7 @@ const ExperiencePage = () => {
                 background: '#377dffff',
               }}
             >
-              <Avatar src="/src/assets/experience/romico.png" size="sm" />
+              <Avatar src="/experience/romico.png" size="sm" />
             </StepIndicator>
           }
           sx={{
@@ -50,7 +50,7 @@ const ExperiencePage = () => {
                 background: 'red',
               }}
             >
-              <Avatar src="/src/assets/experience/pollub.png" size="sm" />
+              <Avatar src="/experience/pollub.png" size="sm" />
             </StepIndicator>
           }
           sx={{

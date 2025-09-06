@@ -62,7 +62,7 @@ const cards: CardProps[] = [
   {
     title: 'Pterodactyl Panel',
 
-    img: '/src/assets/pterry.svg',
+    img: '/pterry.svg',
     imgColor: 'rgba(20, 100, 200, 0.8)',
     href: 'https://pterodactyl.io/',
     text: (
@@ -95,7 +95,7 @@ const cards: CardProps[] = [
   {
     title: 'ATProto',
     href: 'https://atproto.com/',
-    img: '/src/assets/atproto.png',
+    img: '/atproto.png',
     imgColor: 'rgba(20, 100, 200, 0.8)',
     leftImg: true,
     text: (
@@ -121,7 +121,7 @@ const cards: CardProps[] = [
   },
   {
     title: 'My tech stack',
-    img: '/src/assets/react.png',
+    img: '/react.png',
     text: (
       <>
         <Tabulation />
@@ -143,7 +143,7 @@ const cards: CardProps[] = [
   {
     title: 'Paint.NET',
     href: 'https://www.getpaint.net/',
-    img: '/src/assets/paint.png',
+    img: '/paint.png',
     text: (
       <>
         <Tabulation />

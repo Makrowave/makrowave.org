@@ -20,7 +20,7 @@ const Me = () => {
           >
             <Avatar
               alt="Clippy"
-              src="/src/assets/clippy.png"
+              src="/clippy.png"
               variant="outlined"
               sx={{
                 '--Avatar-size': '70px',
@@ -42,7 +42,7 @@ const Me = () => {
       >
         <Avatar
           alt="Makrowave (Me)"
-          src="/src/assets/avatar.png"
+          src="/avatar.png"
           sx={{ width: '250px', height: '250px', border: '2px solid white' }}
         />
       </Badge>
