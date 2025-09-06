@@ -9,12 +9,18 @@ import { Pages } from './pages/pages';
 import BlogPage from './pages/BlogPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ExperiencePage from './pages/ExperiencePage';
+import { posts } from './blog/blogPosts';
 
 const routes = createRoutesFromElements(
   <>
     <Route Component={Layout}>
       <Route index Component={HomePage} />
-      <Route path={Pages.Blog} Component={BlogPage} />
+      <Route path={Pages.Blog}>
+        <Route index Component={BlogPage} />
+        {posts.map((p) => (
+          <Route path={p.href} Component={p.component} key={p.href} />
+        ))}
+      </Route>
       <Route path={Pages.Projects} Component={ProjectsPage} />
       <Route path={Pages.Experience} Component={ExperiencePage} />
     </Route>
