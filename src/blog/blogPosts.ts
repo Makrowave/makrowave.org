@@ -1,5 +1,5 @@
 import type { Post } from './components/BlogTypes';
-import FirstPost from './components/Posts/FirstPost';
+// import FirstPost from './components/Posts/FirstPost';
 
 export const posts: Post[] = [
   // {
