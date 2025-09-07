@@ -8,20 +8,10 @@ const flexFill: SxProps = {
   flexDirection: 'column',
 };
 
-export const topGradient: SxProps = {
-  ...flexFill,
-  background: 'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0))',
-};
-
-export const leftGradient: SxProps = {
+export const backgroundGradient: SxProps = {
   ...flexFill,
   background:
-    'linear-gradient(to left, rgba(0, 255, 136, 0.3), rgba(0, 255, 136, 0))',
-};
-
-export const rightGradient: SxProps = {
-  background:
-    'linear-gradient(to right, rgba(178, 0, 255, 0.5), rgba(178, 0, 255, 0))',
+    'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), linear-gradient(to left, rgba(0, 255, 136, 0.5) 0%, rgba(0, 255, 136, 0) 49%, rgba(178, 0, 255, 0) 51%, rgba(178, 0, 255, 0.7) 100%)',
 };
 
 export const translucentBlur: SxProps = {
