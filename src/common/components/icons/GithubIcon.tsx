@@ -1,10 +1,4 @@
-import type { StyleHTMLAttributes } from 'react';
-
-export const GithubIcon = ({
-  style,
-}: {
-  style?: StyleHTMLAttributes<'svg'>;
-}) => {
+export const GithubIcon = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <svg
       focusable="false"

@@ -1,4 +1,4 @@
-import { Box } from '@mui/joy';
+import { Box } from '@mui/material';
 import { posts } from '../blog/blogPosts';
 import PostPreview from '../blog/components/PostPreview';
 

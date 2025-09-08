@@ -1,10 +1,4 @@
-import type { StyleHTMLAttributes } from 'react';
-
-export const BlueskyIcon = ({
-  style,
-}: {
-  style?: StyleHTMLAttributes<'svg'>;
-}) => {
+export const BlueskyIcon = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <svg
       role="img"

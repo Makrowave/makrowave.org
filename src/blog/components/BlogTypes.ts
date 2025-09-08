@@ -5,5 +5,5 @@ export type Post = {
   subtitle: string;
   date: Date;
   href: string;
-  component: () => JSX.Element;
+  element: JSX.Element;
 };

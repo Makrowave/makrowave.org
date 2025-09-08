@@ -1,42 +1,68 @@
-import { Box, Typography } from '@mui/joy';
+import { Box, Typography, useScrollTrigger } from '@mui/material';
 import { Outlet } from 'react-router';
 import { translucentBlur } from '../../styles/backgroundStyles';
-import Navigation from './Navigation';
+import Navigation from './SlidingAppBar';
 import { Copyright } from '@mui/icons-material';
+import { useEffect, useRef, useState } from 'react';
 
 const Layout = () => {
-  return (
-    <Box sx={{ width: 1080, position: 'relative' }}>
-      <Navigation />
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollTarget, setScrollTarget] = useState<Element | undefined>(
+    undefined,
+  );
 
-      <Box
-        sx={{
-          ...translucentBlur,
-          minHeight: '100vh',
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          my: 0,
-          backdropFilter: 'blur(20px)',
-        }}
-      >
-        <Outlet />
-        <Typography
+  const trigger = useScrollTrigger({
+    target: scrollTarget,
+  });
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      setScrollTarget(scrollRef.current);
+    }
+  }, []);
+
+  return (
+    <Box
+      id="test"
+      ref={scrollRef}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flex: 1,
+        overflowY: 'auto',
+      }}
+    >
+      <Box sx={{ width: 1080, position: 'relative' }}>
+        <Navigation trigger={trigger} />
+        <Box
           sx={{
-            mx: '40px',
-            mb: '10px',
-            mt: 'auto',
-            color: 'white',
+            ...translucentBlur,
+            minHeight: '100vh',
+            flex: 1,
             display: 'flex',
-            alignItems: 'center',
-            gap: 0.5,
+            flexDirection: 'column',
+            my: 0,
+            backdropFilter: 'blur(20px)',
           }}
-          fontSize={18}
         >
-          Makrowave
-          <Copyright sx={{ fontSize: '0.9em', color: 'inherit' }} />
-          2025
-        </Typography>
+          <Outlet />
+          <Typography
+            sx={{
+              mx: '40px',
+              mb: '10px',
+              mt: 'auto',
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 0.5,
+            }}
+            fontSize={18}
+          >
+            Makrowave
+            <Copyright sx={{ fontSize: '0.9em', color: 'inherit' }} />
+            2025
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

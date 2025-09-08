@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
-import type { Page } from './Navigation';
-import { Link } from '@mui/joy';
+import type { Page } from './SlidingAppBar';
+import { Link, Typography } from '@mui/material';
 
 const NavButton = ({
   page,
@@ -56,7 +56,7 @@ const NavButton = ({
         },
       }}
     >
-      {page.label}
+      <Typography variant="h5">{page.label}</Typography>
     </Link>
   );
 };

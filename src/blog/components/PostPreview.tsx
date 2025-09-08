@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from '@mui/joy';
+import { Box, Divider, Typography } from '@mui/material';
 import type { Post } from './BlogTypes';
 import { Link } from 'react-router';
 import { getTitleColor } from '../blogHelper';
@@ -16,13 +16,13 @@ const PostPreview = ({
     <>
       <Box sx={{ my: 5 }}>
         <Link to={post.href} style={{ textDecoration: 'none' }}>
-          <Typography component={'h2'} fontSize={28} sx={{ color: color }}>
+          <Typography variant={'h3'} sx={{ color: color }}>
             {post.title}
           </Typography>
         </Link>
         <Typography
-          fontSize={18}
-          sx={{ color: color, filter: 'grayscale(80%) brightness(180%)' }}
+          variant="h6"
+          sx={{ color: color, filter: 'grayscale(80%) brightness(150%)' }}
         >
           {post.date.toLocaleDateString('en', {
             day: 'numeric',
@@ -31,8 +31,8 @@ const PostPreview = ({
           })}
         </Typography>
         <Typography
-          fontSize={21}
-          sx={{ color: color, filter: 'grayscale(80%) brightness(180%)' }}
+          variant="h5"
+          sx={{ color: color, filter: 'grayscale(20%) brightness(150%)' }}
         >
           {post.subtitle}
         </Typography>

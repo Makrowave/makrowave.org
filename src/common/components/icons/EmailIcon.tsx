@@ -1,10 +1,4 @@
-import type { StyleHTMLAttributes } from 'react';
-
-export const EmailIcon = ({
-  style,
-}: {
-  style?: StyleHTMLAttributes<'svg'>;
-}) => {
+export const EmailIcon = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <svg
       focusable="false"

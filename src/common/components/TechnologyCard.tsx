@@ -1,4 +1,4 @@
-import { Box, Divider, Link, Typography } from '@mui/joy';
+import { Box, Divider, Link, Typography } from '@mui/material';
 import type { ReactElement } from 'react';
 
 export type CardProps = {
@@ -31,21 +31,17 @@ export const TechnologyCard = ({
         }}
       >
         <Box>
-          <Typography component={'h3'} fontSize={22} textColor={'common.white'}>
+          <Typography component={'h3'} fontSize={22}>
             {href ? <Link href={href}>{title}</Link> : title}
           </Typography>
-          <Typography
-            textColor={'common.white'}
-            fontSize={18}
-            textAlign={'justify'}
-          >
+          <Typography fontSize={18} textAlign={'justify'}>
             {text}
           </Typography>
         </Box>
         <Box
           component={'img'}
           src={img}
-          sx={{ height: 240, width: 240, borderRadius: 20 }}
+          sx={{ height: 240, width: 240, borderRadius: 10 }}
           bgcolor={imgColor}
         />
       </Box>

@@ -1,4 +1,4 @@
-import { Box, CssVarsProvider } from '@mui/joy';
+import { Box, ThemeProvider } from '@mui/material';
 import { background } from './styles/backgroundStyles';
 import { RouterProvider } from 'react-router';
 import router from './router';
@@ -7,13 +7,13 @@ import { GradientBackground } from './common/components/GradientBackground';
 
 const App = () => {
   return (
-    <CssVarsProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Box sx={background}>
         <GradientBackground>
           <RouterProvider router={router} />
         </GradientBackground>
       </Box>
-    </CssVarsProvider>
+    </ThemeProvider>
   );
 };
 

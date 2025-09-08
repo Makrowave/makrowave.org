@@ -1,6 +1,4 @@
-import type { StyleHTMLAttributes } from 'react';
-
-const DiscordIcon = ({ style }: { style?: StyleHTMLAttributes<'svg'> }) => {
+const DiscordIcon = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <svg
       role="img"

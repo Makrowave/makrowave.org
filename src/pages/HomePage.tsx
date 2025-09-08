@@ -1,4 +1,5 @@
-import { Box, Link, Typography } from '@mui/joy';
+import { Box, Divider, Link, Typography } from '@mui/material';
+import { Link as RouterLink } from 'react-router';
 import {
   TechnologyCard,
   type CardProps,
@@ -22,34 +23,42 @@ export const HomePage = () => {
         <Box
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}
         >
-          <Typography level="h1" textColor={'common.white'} fontSize={50}>
-            Hello, I'm Makrowave
-          </Typography>
-          <Typography
-            variant="plain"
-            textColor={'common.white'}
-            fontSize={20}
-            textAlign={'justify'}
-          >
-            Professionaly I'm a <b>React.js</b> software developer. And casually
-            I love when things are done right in the Internet, playing Minecraft
-            and since I find the game boring: creating mods/modpacks. <br /> I
-            have created this page since I've bought a domain, but also because
-            I started to appreciate things on the internet and creating more of
-            my own <i>(or as of now trying to)</i>. Well needless to say its
-            common for software engineers to have their own websites so here is
-            my own - not made for advertisement for job search like many of my
-            peers do.
-            <br /> Also bye bye to relative anonimity.
+          <Typography variant="h1">Hello, I'm Makrowave</Typography>
+          <Typography component={'section'} textAlign={'justify'}>
+            <Typography variant="h5">About me</Typography>
+            <Typography component={'p'}>
+              I'm a web developer, working primarly using <b>react.js</b>. Other
+              than that I like playing video games, making content for them
+              (especially Minecraft mods/modpacks) and when things are done
+              right. It's just satisfying.
+            </Typography>
+            <Divider orientation="horizontal" />
+            <Typography variant="h5">What will you find here</Typography>
+            <ul>
+              <li>
+                Blog posts about frontend code problems - mostly some specific
+                problem I've approched not some general patterns discussions.
+              </li>
+              <li>Blog posts about games I play and screenshots</li>
+              <li>My work experience</li>
+              <li>
+                Projects that I think are worth sharing in{' '}
+                <Typography component="span">
+                  <Link component={RouterLink} to={'projects'}>
+                    projects tab
+                  </Link>
+                </Typography>
+              </li>
+              <li>Maybe devlogs from things I made</li>
+            </ul>
           </Typography>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, gap: 4 }}>
-        <Box sx={{ borderBottom: '1px solid white' }}>
-          <Typography component={'h2'} textColor={'common.white'} fontSize={25}>
-            Things I find cool (and use)
-          </Typography>
-        </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <Typography variant={'h5'}>
+          Things I use and recommend/support
+        </Typography>
+        <Divider sx={{ mt: 1 }} />
         {cards.map((card) => (
           <TechnologyCard {...card} key={card.title} />
         ))}
@@ -129,14 +138,13 @@ const cards: CardProps[] = [
         and make personal projects in React, when I have to write backend I use
         .NET. For components I like <Link href={'https://mui.com/'}>MUI</Link>,
         but when feeling more creative tailwind is also fun. Well besides my PC,
-        I use Apple stuff - iPhone, mac. While having scummy practices their
-        environment is cool (except for safari webapi, cmon, you are really
-        making my work harder). Well point of previous statement was to say that
-        naturally I learned Swift and SwiftUI. I know some React Native, work in
-        React Native but not really enjoy React Native.
+        I use Apple stuff - iPhone, mac. While having scummy practices their -
+        environment is neat (except for safari, cmon how bad of web api can you
+        implement). Well point of previous statement was to say that I learned
+        Swift and SwiftUI. I know some React Native, use React Native at work,
+        but I'm not a fan of it.
         <br /> <Tabulation />
-        If you're wondering - this website was made using React, Vite, MUI
-        and... yeah that's it. TS ofc.
+        If you're wondering - this website was made using React, Vite and MUI
       </>
     ),
   },
@@ -152,7 +160,9 @@ const cards: CardProps[] = [
         Handles image resizing well, anchors etc. - just check it out. I use it
         for pixelart when I need to do something for minecraft mods / modpacks.
         Would be fun to paint their logo in pixelart.{' '}
-        <b>Note: you can use Paint.NET for other things than pixelart</b>
+        <b>
+          While I talked about pixelart - you can use it for other stuff too.
+        </b>
       </>
     ),
     leftImg: true,

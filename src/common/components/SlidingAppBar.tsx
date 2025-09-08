@@ -1,4 +1,4 @@
-import { Box, Divider } from '@mui/joy';
+import { AppBar, Box, Divider, Slide } from '@mui/material';
 import { useRef, useLayoutEffect, useState } from 'react';
 import NavButton from './NavButton';
 import { Pages } from '../../pages/pages';
@@ -15,7 +15,7 @@ const pages = [
   { href: Pages.Experience, label: 'Experience' },
 ];
 
-const Navigation = () => {
+const SlidingAppBar = ({ trigger }: { trigger?: boolean }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const [navWidth, setNavWidth] = useState(0);
 
@@ -25,17 +25,14 @@ const Navigation = () => {
     }
   }, []);
 
-  return (
-    <Box
+  const body = (
+    <AppBar
       ref={navRef}
       component="nav"
       sx={{
         position: 'sticky',
-        top: 0,
-        display: 'flex',
-        zIndex: 10,
-        flexDirection: 'column',
-        bgcolor: 'rgba(0, 0, 0, 0.5)',
+        my: 'auto',
+        bgcolor: 'rgba(0, 0, 0, 0.2)',
         backdropFilter: 'blur(20px)',
       }}
     >
@@ -55,15 +52,25 @@ const Navigation = () => {
           />
         ))}
       </Box>
-      <Divider
-        sx={{
-          borderBottom: '0.1px solid',
-          borderImage:
-            'linear-gradient(to right, rgba(225,155,255,1), rgba(255,255,255,1), rgba(169,252,214,1)) 1',
-        }}
-      />
-    </Box>
+      <Divider variant="gradient" sx={{ my: 0 }} />
+    </AppBar>
+  );
+
+  if (trigger === undefined) {
+    return body;
+  }
+
+  return (
+    <Slide
+      appear={false}
+      direction="down"
+      in={!trigger}
+      unmountOnExit={false}
+      mountOnEnter={false}
+    >
+      {body}
+    </Slide>
   );
 };
 
-export default Navigation;
+export default SlidingAppBar;

@@ -18,7 +18,7 @@ const routes = createRoutesFromElements(
       <Route path={Pages.Blog}>
         <Route index Component={BlogPage} />
         {posts.map((p) => (
-          <Route path={p.href} Component={p.component} key={p.href} />
+          <Route path={p.href} element={p.element} key={p.href} />
         ))}
       </Route>
       <Route path={Pages.Projects} Component={ProjectsPage} />

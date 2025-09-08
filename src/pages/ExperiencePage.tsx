@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Divider,
-  Step,
-  StepIndicator,
-  Stepper,
-  Typography,
-} from '@mui/joy';
+import { Box, Divider, Step, Stepper, Typography } from '@mui/material';
 
 const ExperiencePage = () => {
   return (
@@ -16,15 +8,6 @@ const ExperiencePage = () => {
         sx={{ flex: 3, '--Step-gap': '80px', '--StepIndicator-size': '35px' }}
       >
         <Step
-          indicator={
-            <StepIndicator
-              sx={{
-                background: '#377dffff',
-              }}
-            >
-              <Avatar src="/experience/romico.png" size="sm" />
-            </StepIndicator>
-          }
           sx={{
             '&::after': {
               height: 2,
@@ -44,15 +27,6 @@ const ExperiencePage = () => {
           </Box>
         </Step>
         <Step
-          indicator={
-            <StepIndicator
-              sx={{
-                background: 'red',
-              }}
-            >
-              <Avatar src="/experience/pollub.png" size="sm" />
-            </StepIndicator>
-          }
           sx={{
             '&::after': {
               height: 2,
@@ -71,7 +45,7 @@ const ExperiencePage = () => {
             </Typography>
           </Box>
         </Step>
-        <Step indicator={<StepIndicator />}>
+        <Step>
           <Box>
             <Typography fontSize={16} sx={{ color: 'white' }}>
               AMS Bikes

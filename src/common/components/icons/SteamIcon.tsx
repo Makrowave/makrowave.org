@@ -1,6 +1,4 @@
-import type { StyleHTMLAttributes } from 'react';
-
-const SteamIcon = ({ style }: { style?: StyleHTMLAttributes<'svg'> }) => {
+const SteamIcon = ({ style }: { style?: React.CSSProperties }) => {
   return (
     <svg
       role="img"

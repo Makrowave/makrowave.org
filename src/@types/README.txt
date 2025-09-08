@@ -1,0 +1,1 @@
+Used only for type augmentations - other types are in their modules
