@@ -2,7 +2,7 @@ import { Box, Divider, Typography } from '@mui/material';
 import type { Post } from './BlogTypes';
 import { Link } from 'react-router';
 import { getTitleColor } from '../blogHelper';
-
+import { motion } from 'framer-motion';
 const PostPreview = ({
   post,
   noDivider,
@@ -13,7 +13,13 @@ const PostPreview = ({
   const color = getTitleColor(post.date);
 
   return (
-    <>
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      transition={{ duration: 0.15 }}
+    >
       <Box sx={{ my: 5 }}>
         <Link to={post.href} style={{ textDecoration: 'none' }}>
           <Typography variant={'h3'} sx={{ color: color }}>
@@ -42,7 +48,7 @@ const PostPreview = ({
           sx={{ '--Divider-lineColor': color, filter: 'brightness(40%)' }}
         />
       )}
-    </>
+    </motion.div>
   );
 };
 
