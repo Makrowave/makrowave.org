@@ -2,7 +2,7 @@ import { AppBar, Box, Chip } from '@mui/material';
 import { useState, type Dispatch } from 'react';
 import { generateGradient, getAllTags } from '../blogHelper';
 import Tag from './Tag';
-import type { Post } from './BlogTypes';
+import type { Post } from '../blogTypes';
 import { posts } from '../blogPosts';
 import ToggleTransitionOverlay from '../../common/components/ToggleTransitionOverlay';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';

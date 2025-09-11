@@ -1,4 +1,4 @@
-import type { SxProps } from '@mui/material/styles/types';
+import type { SxProps } from '@mui/material';
 
 const flexFill: SxProps = {
   width: '100%',

@@ -1,1 +1,313 @@
-# test
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+
+# Making of this site
+
+### How I made this stuff
+
+{(new Date('09-11-2025')).toLocaleDateString('en', {
+day: 'numeric',
+month: 'long',
+year: 'numeric',
+})}
+
+First blog post! Never wrote those before. Anyways - as of time of writing I got my first full-time tech job as frontend developer.
+I got the hang of it, faced tedious tasks and wanted to share the process of completing them. Why?
+Because I could not find any clear hints to how to complete them. One thing I would like to write about is updating i18next in React
+so it does not use a <Link href={'https://stackoverflow.com/questions/77841033/creating-recursive-type-for-union-of-keys-in-nested-objects'}>specific type</Link>
+or a type deleted in newer versions for `i18n.t` argument. Well some of the issues will be **very specific**
+or for **old frameworks** but I hope to share some stuff for latest libraries. <br /><br /> Like making of this website.
+
+Please note that all of the solutions I talk about might not be optimal and I might just suck at using Google.
+If you know better please @ me at BlueSky or DM on discord. Happy to hear better solutions!
+
+## Tech stack
+
+Here is the list of my opinion the most interesting things that enabled me to create this website
+
+- React.js - not necessarily the interesting thing but it has to be mentioned.
+- Vite - current way to create React apps, I recommend it over next.js definitely.
+- React Router - React framework. I also prefer it much more than next.js. I will mention something about it later.
+- Material UI - a component library for React. Helps a lot with stuff.
+- MDX - now this one is **interesting**. This library combines JSX with markdown. This blog post is written using it.
+- Motion - well I learned about this one today - animation library. I used it to animate filtering of blog posts, which you won't notice yet since there is only 1 post.
+
+## Material UI and styling
+
+I like MUI - it has a nice style out of the box. If you don't like the style - you can customise it - as I did.
+There are many ways to so - some are better than others and all exist for a reason - at least I believe so, soon I will need to migrate one project from one styling approach
+to currently endorsed one: `createTheme` so maybe I will write something more about different approaches.
+
+<br />
+
+So about `createTheme` it is a useful tool. While in css you can just define a global style for a tag like:
+
+```css
+p {
+  color: 'red';
+}
+```
+
+in MUI you can also override style for `p` tag or you can change the `<Typography>` component like so:
+
+```ts
+    const theme = createTheme({
+        components: [
+            MuiTypography: {
+                defaultProps: {
+                    color: 'red',
+                },
+            },
+        ]
+    })
+```
+
+This enables you to tweak one (or multiple) properties while keeping other styling intact.
+Soooo as per every component/styling library - use it if you like the base styles or how components work. If you don't like any - I recommend tailwind and custom palletes.
+
+In this project MUI did not really fit my style but I work with it daily and wanted to check my understanding of it by creating an website from scratch.
+I also like the **functionalities** of components and the choice - for example `<Divider>` saves you work so you don't have to create a thin div (or something else)
+which stretches in correct direction.
+
+Other components I used so far with a purpose were `<AppBar>`, `<Slide>`, `<Avatar>`, `<Badge>` and `<Stepper>`.
+First 2 were used for sliding AppBar/TagBar (at the time of writing AppBar slides in and out, but I think I will make it static and make tags slide in and out).
+
+`<Avatar>` and `<Badge>` can be witnessed on Home Page - my avatar and clippy which links to Louis Rossman (check him out if you care about right to repair).
+Badge is a wrapper that enables you to overlay something relative to other things - MUI examples include status badge (green, yellow, red dot)
+connection to other person (2 avatars) or there was other variant or component that could make a group of avatars.
+
+`<Stepper>` alongside other related components _will_ be used to finish my experience page. It is technically a navigation component but I will use it for dots connected together `¯\_(ツ)\_/¯`.
+
+Alright let's talk about styling and let's make it short.
+
+Background:
+
+<Box sx={{overflowX: 'scroll'}}>
+```ts
+export const backgroundGradient: SxProps = {
+  ...flexFill,
+  background:
+    'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), linear-gradient(to left, rgba(0, 255, 136, 0.5) 0%, rgba(0, 255, 136, 0) 49%, rgba(178, 0, 255, 0) 51%, rgba(178, 0, 255, 0.7) 100%)',
+};
+```
+</Box>
+
+I started out with 3 Boxes (divs) with 3 gradeints and realized I can just make it one.
+So this gradient is actually useful for color picker -
+I did a custom one for my <Link href={'https://github.com/Makrowave/Makrowave-Type'}>Makrowave Type</Link> Vue project.
+I think making of a color picker is a material for another post. Well added to bucket list.
+So how the gradient works?
+
+- Set a certain background (in my case black in another Box).
+- Make a horizontal gradient in the hues you like.
+- Overlay black gradient starting fully opaque and ending up fully transparent.
+- You get the effect like mine.
+
+Posts:
+
+The posts are actually a cool concept - I made a function that changes their color depending on passing of time. Implementation is mine,
+but the idea was taken from <Link href={'https://overreacted.io/'}>Dan Abramov's</Link> blog.
+Go there if you want to listen to someone smart talking about React and recently <Link href={'https://lean-lang.org/'}>Lean</Link>.
+
+Gradient text:
+
+```ts
+{
+    background:
+        'linear-gradient(to right, rgba(225, 155, 255, 1), rgba(255, 255, 255, 1), rgba(169, 252, 214, 1))',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    color: 'transparent',
+}
+```
+
+That is the trick - for background use another div.
+
+Now for the tags:
+For gradient I hash the string to some number by adding and multiplying char codes.
+I do this so I can get a seed that I can later pluck to `randomColor` function from a <Link href={'https://www.npmjs.com/package/randomcolor'}>simple library</Link>.
+So I have random but deterministic gradients now for each tag. I don't know what new tag will look like - I like that idea.
+
+For the tags - I use `<Chip>` component from MUI. I wrap it in a div with the gradient which changes color. The change of color was tricky - I learned something new.
+Here is the style:
+
+```ts
+{
+    position: 'relative',
+    borderRadius,
+    display: 'flex',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    '::before': {
+        content: '""',
+        position: 'absolute',
+        inset: 0,
+        background: offBackground,
+        transition: `opacity ${duration}`,
+        opacity: trigger ? 0 : 1,
+        zIndex: -1,
+        pointerEvents: 'none',
+    },
+    '::after': {
+        content: '""',
+        position: 'absolute',
+        inset: 0,
+        background: onBackground,
+        transition: `opacity ${duration}`,
+        opacity: trigger ? 1 : 0,
+        zIndex: -1,
+        pointerEvents: 'none',
+    },
+}
+
+```
+
+I ain't taking credit for it - ChatGPT helped me with this one. After looking at it I understand it.
+Ok so why? You cannot make a css transition on gradient background so you have to change the opacity.
+The after and before elements are position absolutely with lower zIndex than what they wrap so they act as border that changes color.
+And I change the opacities by some trigger: check out `ToggleTransitionOverlay.tsx` for full code.
+
+_The Animations_
+Here I used Motion. Just found it applied some example. The problem I faced is that I did not want to apply absolute positioning with fixed sizes
+and I could not find how to animate appearing or disappearing elements inside of flexbox.
+One solution would be a transition on flexGrow, but that would mean I have to render posts at all times and I already created filters in a certain way.
+
+So how did I use it?
+
+```ts
+<AnimatePresence>
+  {filteredPosts.map((p, i) => (
+    <PostPreview post={p} noDivider={i === posts.length - 1} key={p.href} />
+  ))}
+</AnimatePresence>
+```
+
+All posts are wrapped in `AnimatePresence` component which makes it so they can have enter/exit animations.
+Each component can be wrapped seperately or all can be wrapped with one like I did.
+PostPreview is wrapped in `<motion.div>` - every HTML tag has a `motion` component where you specify how to animate the element.
+So this would be `<motion.div>` for PostPreview:
+
+```ts
+<motion.div
+    layout
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 0.8 }}
+    transition={{ duration: 0.15 }}
+>
+```
+
+`layout` is what makes the components reorder. `transition` has the duration - self explanatory. `animate` is the style on which component settles and
+`initial` and `exit` props are the styles on which components end finish their entry and exit animation.
+I have not done a deep dive into motion but I believe that in case of transition you can definitely specify some complex animations, different durations
+for each steps etc. etc. Well I still have a plan for experience page... so I will have fun with Motion there.
+
+Well this definitely wasn't short but I sure do like writing a lot.
+
+## React Router
+
+As with every library I recommend reading about it on your own. It is really extensive and has a lot of functions.
+I primarly use the `data router` approach. It has all the features that I wanted so far and is much more powerful than `declarative`
+approach altough it's setup is _slightly_ more complicated and uglier.
+
+I do prefer `declarative` approach more since you define routes with **Components**!
+
+If you've read article on React Router docs about which apporach to choose and still are not convinced here is a pro tip:
+
+**You will NOT be able to do routing from outside of React with DECLARATIVE approach**.
+
+So you might be like me and be forced to use data version :(
+
+**Fear not - there is a really cool solution in this fremework**
+
+A colleague at work has found and shown me a function: `createRoutesFromElements`.
+Feed it `<Route>` or `<Route>`s wrapped with Fragment and you will get an ugly routes object - which hopefully you won't need to see, just pass it to your router:
+
+```ts
+const routes = createRoutesFromElements(
+  <>
+    <Route Component={Layout}>
+      <Route index Component={HomePage} />
+      <Route path={Pages.Blog}>
+        <Route index Component={BlogPage} />
+        <Route Component={PostWrapper}>
+          {posts.map((p) => (
+            <Route path={p.href} element={p.element} key={p.href} />
+          ))}
+        </Route>
+      </Route>
+      <Route path={Pages.Projects} Component={ProjectsPage} />
+      <Route path={Pages.Experience} Component={ExperiencePage} />
+    </Route>
+  </>,
+);
+
+const router = createBrowserRouter(routes);
+
+export default router;
+```
+
+Easy.
+
+## Last but not least - MDX
+
+You can insert JSX into Markdown and use Markdown as a component.
+
+Example of first is this post - MakingOf.mdx. Here is a the beggining:
+
+<Box sx={{overflowX: 'scroll'}}>
+```mdx
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+
+# Making of this site
+
+### How I made this stuff
+
+{(new Date('09-11-2025')).toLocaleDateString('en', {
+day: 'numeric',
+month: 'long',
+year: 'numeric',
+})}
+
+First blog post! Never wrote those before. Anyways - as of time of writing I got my first full-time tech job as frontend developer.
+I got the hang of it, faced tedious tasks and wanted to share the process of completing them. Why?
+Because I could not find any clear hints to how to complete them. One thing I would like to write about is updating i18next in React
+so it does not use a <Link href={'https://stackoverflow.com/questions/77841033/creating-recursive-type-for-union-of-keys-in-nested-objects'}>specific type</Link>
+or a type deleted in newer versions for `i18n.t` argument. Well some of the issues will be **very specific**
+or for **old frameworks** but I hope to share some stuff for latest libraries. <br /><br /> Like making of this website.
+
+Please note that all of the solutions I talk about might not be optimal and I might just suck at using Google.
+If you know better please @ me at BlueSky or DM on discord. Happy to hear better solutions!
+
+```
+</Box>
+```
+
+Oh yeah you can not only use components but inline JS/TS too!
+
+And here is how I use it in react:
+
+```ts
+import type { Post } from './blogTypes';
+import MakingOf from './components/Posts/MakingOf.mdx';
+
+export const posts: Post[] = [
+  {
+    title: 'Making of this site',
+    tags: ['React', 'MUI', 'Motion', 'MDX', 'Makrowave'],
+    subtitle: 'How I made this stuff',
+    date: new Date('09-11-2025'),
+    href: 'making-of',
+    element: <MakingOf />,
+  },
+];
+```
+
+Ok but why use it? For me personally using Markdown to create notes is simpler and faster than writing HTML.
+Well the only caveat is that I need to prestyle it or I just end up writing HTML anyways.
+But little HTML to help with style sometimes is ok. Also - code highlighting
+(I am yet to figure it out _as of time of writing_, but as you can see the code is already styled).
+
+So that sums it up. I learned something working on it and I hope you did too reading it.

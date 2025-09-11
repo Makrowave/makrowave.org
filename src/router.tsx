@@ -10,6 +10,7 @@ import BlogPage from './pages/BlogPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ExperiencePage from './pages/ExperiencePage';
 import { posts } from './blog/blogPosts';
+import PostWrapper from './blog/components/PostWrapper';
 
 const routes = createRoutesFromElements(
   <>
@@ -17,9 +18,11 @@ const routes = createRoutesFromElements(
       <Route index Component={HomePage} />
       <Route path={Pages.Blog}>
         <Route index Component={BlogPage} />
-        {posts.map((p) => (
-          <Route path={p.href} element={p.element} key={p.href} />
-        ))}
+        <Route Component={PostWrapper}>
+          {posts.map((p) => (
+            <Route path={p.href} element={p.element} key={p.href} />
+          ))}
+        </Route>
       </Route>
       <Route path={Pages.Projects} Component={ProjectsPage} />
       <Route path={Pages.Experience} Component={ExperiencePage} />

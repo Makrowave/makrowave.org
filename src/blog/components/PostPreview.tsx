@@ -1,5 +1,5 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
-import type { Post } from './BlogTypes';
+import type { Post } from '../blogTypes';
 import { Link } from 'react-router';
 import { getTitleColor } from '../blogHelper';
 import { motion } from 'framer-motion';

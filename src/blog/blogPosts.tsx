@@ -1,17 +1,19 @@
-import type { Post } from './components/BlogTypes';
+import type { Post } from './blogTypes';
 import MakingOf from './components/Posts/MakingOf.mdx';
 
-// export const posts: Post[] = [
-//   {
-//     title: 'i18next',
-//     subtitle: 'What I like and how upgrading is pain',
-//     date: new Date('09-06-2025'),
-//     href: 'i18next',
-//     element: <I18npost />,
-//   },
-// ];
+export const posts: Post[] = [
+  {
+    title: 'Making of this site',
+    tags: ['React', 'MUI', 'Motion', 'MDX', 'Makrowave'],
+    subtitle: 'How I made this stuff',
+    date: new Date('09-11-2025'),
+    href: 'making-of',
+    element: <MakingOf />,
+  },
+];
 
-function mockPosts(count: number): Post[] {
+//eslint-disable-next-line
+const mockPosts = (count: number): Post[] => {
   const posts: Post[] = [];
   const tags = ['gaming', 'iOS', 'React', 'i18n'];
 
@@ -27,6 +29,6 @@ function mockPosts(count: number): Post[] {
   }
 
   return posts;
-}
+};
 
-export const posts: Post[] = mockPosts(20);
+// export const posts: Post[] = mockPosts(20);
