@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { alpha, Switch } from '@mui/material';
 
 //eslint-disable-next-line
-const WhiteSwitch = styled(Switch)(({ theme }) => ({
+const WhiteSwitch = styled(Switch)(({}) => ({
   '& .MuiSwitch-switchBase.Mui-checked': {
     color: '#FFFFFF',
     '&:hover': {
