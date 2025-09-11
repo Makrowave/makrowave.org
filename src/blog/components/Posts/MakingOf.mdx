@@ -1,5 +1,6 @@
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import CustomSyntaxHighlighter from '../../../common/components/CustomSyntaxHighlighter';
 
 # Making of this site
 
@@ -42,16 +43,16 @@ to currently endorsed one: `createTheme` so maybe I will write something more ab
 
 So about `createTheme` it is a useful tool. While in css you can just define a global style for a tag like:
 
-```css
-p {
-  color: 'red';
-}
-```
+<CustomSyntaxHighlighter language="css">
+  {`p {
+    color: 'red';
+}`}
+</CustomSyntaxHighlighter>
 
 in MUI you can also override style for `p` tag or you can change the `<Typography>` component like so:
 
-```ts
-    const theme = createTheme({
+<CustomSyntaxHighlighter language="typescript">
+  {`const theme = createTheme({
         components: [
             MuiTypography: {
                 defaultProps: {
@@ -59,8 +60,8 @@ in MUI you can also override style for `p` tag or you can change the `<Typograph
                 },
             },
         ]
-    })
-```
+    })`}
+</CustomSyntaxHighlighter>
 
 This enables you to tweak one (or multiple) properties while keeping other styling intact.
 Soooo as per every component/styling library - use it if you like the base styles or how components work. If you don't like any - I recommend tailwind and custom palletes.
@@ -82,16 +83,14 @@ Alright let's talk about styling and let's make it short.
 
 Background:
 
-<Box sx={{overflowX: 'scroll'}}>
-```ts
-export const backgroundGradient: SxProps = {
-  ...flexFill,
-  background:
-    'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), linear-gradient(to left, rgba(0, 255, 136, 0.5) 0%, rgba(0, 255, 136, 0) 49%, rgba(178, 0, 255, 0) 51%, rgba(178, 0, 255, 0.7) 100%)',
-};
-```
-</Box>
+<CustomSyntaxHighlighter language="typescript">
+{`export const backgroundGradient: SxProps = {
+    ...flexFill,
+    background:
+        'linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), linear-gradient(to left, rgba(0, 255, 136, 0.5) 0%, rgba(0, 255, 136, 0) 49%, rgba(178, 0, 255, 0) 51%, rgba(178, 0, 255, 0.7) 100%)',
+};`}
 
+</CustomSyntaxHighlighter>
 I started out with 3 Boxes (divs) with 3 gradeints and realized I can just make it one.
 So this gradient is actually useful for color picker -
 I did a custom one for my <Link href={'https://github.com/Makrowave/Makrowave-Type'}>Makrowave Type</Link> Vue project.
@@ -111,16 +110,16 @@ Go there if you want to listen to someone smart talking about React and recently
 
 Gradient text:
 
-```ts
-{
+<CustomSyntaxHighlighter language="typescript">
+  {`{
     background:
         'linear-gradient(to right, rgba(225, 155, 255, 1), rgba(255, 255, 255, 1), rgba(169, 252, 214, 1))',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
     color: 'transparent',
-}
-```
+}`}
+</CustomSyntaxHighlighter>
 
 That is the trick - for background use another div.
 
@@ -132,8 +131,8 @@ So I have random but deterministic gradients now for each tag. I don't know what
 For the tags - I use `<Chip>` component from MUI. I wrap it in a div with the gradient which changes color. The change of color was tricky - I learned something new.
 Here is the style:
 
-```ts
-{
+<CustomSyntaxHighlighter language="typescript">
+  {`{
     position: 'relative',
     borderRadius,
     display: 'flex',
@@ -144,7 +143,7 @@ Here is the style:
         position: 'absolute',
         inset: 0,
         background: offBackground,
-        transition: `opacity ${duration}`,
+        transition: \`opacity \${duration}\`,
         opacity: trigger ? 0 : 1,
         zIndex: -1,
         pointerEvents: 'none',
@@ -154,14 +153,13 @@ Here is the style:
         position: 'absolute',
         inset: 0,
         background: onBackground,
-        transition: `opacity ${duration}`,
+        transition: \`opacity \${duration}\`,
         opacity: trigger ? 1 : 0,
         zIndex: -1,
         pointerEvents: 'none',
     },
-}
-
-```
+}`}
+</CustomSyntaxHighlighter>
 
 I ain't taking credit for it - ChatGPT helped me with this one. After looking at it I understand it.
 Ok so why? You cannot make a css transition on gradient background so you have to change the opacity.
@@ -175,28 +173,28 @@ One solution would be a transition on flexGrow, but that would mean I have to re
 
 So how did I use it?
 
-```ts
-<AnimatePresence>
+<CustomSyntaxHighlighter>
+  {`<AnimatePresence>
   {filteredPosts.map((p, i) => (
     <PostPreview post={p} noDivider={i === posts.length - 1} key={p.href} />
   ))}
-</AnimatePresence>
-```
+</AnimatePresence>`}
+</CustomSyntaxHighlighter>
 
 All posts are wrapped in `AnimatePresence` component which makes it so they can have enter/exit animations.
 Each component can be wrapped seperately or all can be wrapped with one like I did.
 PostPreview is wrapped in `<motion.div>` - every HTML tag has a `motion` component where you specify how to animate the element.
 So this would be `<motion.div>` for PostPreview:
 
-```ts
-<motion.div
+<CustomSyntaxHighlighter>
+  {`<motion.div
     layout
     initial={{ opacity: 0, scale: 0.8 }}
     animate={{ opacity: 1, scale: 1 }}
     exit={{ opacity: 0, scale: 0.8 }}
     transition={{ duration: 0.15 }}
->
-```
+>`}
+</CustomSyntaxHighlighter>
 
 `layout` is what makes the components reorder. `transition` has the duration - self explanatory. `animate` is the style on which component settles and
 `initial` and `exit` props are the styles on which components end finish their entry and exit animation.
@@ -224,8 +222,8 @@ So you might be like me and be forced to use data version :(
 A colleague at work has found and shown me a function: `createRoutesFromElements`.
 Feed it `<Route>` or `<Route>`s wrapped with Fragment and you will get an ugly routes object - which hopefully you won't need to see, just pass it to your router:
 
-```ts
-const routes = createRoutesFromElements(
+<CustomSyntaxHighlighter>
+{`const routes = createRoutesFromElements(
   <>
     <Route Component={Layout}>
       <Route index Component={HomePage} />
@@ -245,8 +243,8 @@ const routes = createRoutesFromElements(
 
 const router = createBrowserRouter(routes);
 
-export default router;
-```
+export default router;`}
+</CustomSyntaxHighlighter>
 
 Easy.
 
@@ -256,9 +254,8 @@ You can insert JSX into Markdown and use Markdown as a component.
 
 Example of first is this post - MakingOf.mdx. Here is a the beggining:
 
-<Box sx={{overflowX: 'scroll'}}>
-```mdx
-import Link from '@mui/material/Link';
+<CustomSyntaxHighlighter language='markdown'>
+{`import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
 # Making of this site
@@ -275,22 +272,20 @@ First blog post! Never wrote those before. Anyways - as of time of writing I got
 I got the hang of it, faced tedious tasks and wanted to share the process of completing them. Why?
 Because I could not find any clear hints to how to complete them. One thing I would like to write about is updating i18next in React
 so it does not use a <Link href={'https://stackoverflow.com/questions/77841033/creating-recursive-type-for-union-of-keys-in-nested-objects'}>specific type</Link>
-or a type deleted in newer versions for `i18n.t` argument. Well some of the issues will be **very specific**
+or a type deleted in newer versions for \`i18n.t\` argument. Well some of the issues will be **very specific**
 or for **old frameworks** but I hope to share some stuff for latest libraries. <br /><br /> Like making of this website.
 
 Please note that all of the solutions I talk about might not be optimal and I might just suck at using Google.
-If you know better please @ me at BlueSky or DM on discord. Happy to hear better solutions!
+If you know better please @ me at Bluesky or DM on discord. Happy to hear better solutions!`}
 
-```
-</Box>
-```
+</CustomSyntaxHighlighter>
 
 Oh yeah you can not only use components but inline JS/TS too!
 
 And here is how I use it in react:
 
-```ts
-import type { Post } from './blogTypes';
+<CustomSyntaxHighlighter>
+{`import type { Post } from './blogTypes';
 import MakingOf from './components/Posts/MakingOf.mdx';
 
 export const posts: Post[] = [
@@ -302,12 +297,14 @@ export const posts: Post[] = [
     href: 'making-of',
     element: <MakingOf />,
   },
-];
-```
+];`}
+</CustomSyntaxHighlighter>
+
+Fun fact: here something broke - this should have tsx formatting not markdown, and rest of highlighting in vscode is a template string.
+But it compiles! (This app is served to you with static files... and TS ofc)
 
 Ok but why use it? For me personally using Markdown to create notes is simpler and faster than writing HTML.
 Well the only caveat is that I need to prestyle it or I just end up writing HTML anyways.
-But little HTML to help with style sometimes is ok. Also - code highlighting
-(I am yet to figure it out _as of time of writing_, but as you can see the code is already styled).
-
+But little HTML to help with style sometimes is ok.
+Also - code highlighting - I use **react-syntax-highlighting** and insert my custom highlight for every code snippet in MDX file.
 So that sums it up. I learned something working on it and I hope you did too reading it.
