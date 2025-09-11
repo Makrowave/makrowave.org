@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Stack, Typography } from '@mui/material';
 import type { Post } from './BlogTypes';
 import { Link } from 'react-router';
 import { getTitleColor } from '../blogHelper';
@@ -26,16 +26,27 @@ const PostPreview = ({
             {post.title}
           </Typography>
         </Link>
-        <Typography
-          variant="h6"
-          sx={{ color: color, filter: 'grayscale(80%) brightness(150%)' }}
-        >
-          {post.date.toLocaleDateString('en', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-          })}
-        </Typography>
+        <Stack direction={'row'} alignItems={'center'} gap={2}>
+          <Typography
+            variant="h6"
+            sx={{
+              color: color,
+              filter: 'grayscale(80%) brightness(150%)',
+              pr: 1,
+            }}
+          >
+            {post.date.toLocaleDateString('en', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </Typography>
+          {post.tags.map((t) => (
+            <Typography variant="h6" sx={{ filter: 'brightness(70%)' }}>
+              {t}
+            </Typography>
+          ))}
+        </Stack>
         <Typography
           variant="h5"
           sx={{ color: color, filter: 'grayscale(20%) brightness(150%)' }}
