@@ -1,4 +1,11 @@
-import { Box, Divider, Link, Typography } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Link,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { Link as RouterLink } from 'react-router';
 import {
   TechnologyCard,
@@ -8,6 +15,8 @@ import Tabulation from '../common/components/Tabulation';
 import Me from '../common/components/Me';
 
 export const HomePage = () => {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <Box
       sx={{
@@ -18,7 +27,14 @@ export const HomePage = () => {
         flex: 1,
       }}
     >
-      <Box sx={{ display: 'flex', gap: 10 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 10,
+          flexWrap: isMd ? 'wrap' : 'nowrap',
+          justifyContent: 'center',
+        }}
+      >
         <Me />
         <Box
           sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}

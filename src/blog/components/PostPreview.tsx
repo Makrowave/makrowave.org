@@ -1,4 +1,11 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Divider,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import type { Post } from '../blogTypes';
 import { Link } from 'react-router';
 import { getStringDate, getTitleColor } from '../blogHelper';
@@ -11,6 +18,8 @@ const PostPreview = ({
   noDivider?: boolean;
 }) => {
   const color = getTitleColor(post.date);
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <motion.div
@@ -22,11 +31,16 @@ const PostPreview = ({
     >
       <Box sx={{ my: 5 }}>
         <Link to={post.href} style={{ textDecoration: 'none' }}>
-          <Typography variant={'h3'} sx={{ color: color }}>
+          <Typography variant={isMd ? 'h5' : 'h3'} sx={{ color: color }}>
             {post.title}
           </Typography>
         </Link>
-        <Stack direction={'row'} alignItems={'center'} gap={2}>
+        <Stack
+          direction={'row'}
+          alignItems={'center'}
+          flexWrap={'wrap'}
+          columnGap={2}
+        >
           <Typography
             variant="h6"
             sx={{

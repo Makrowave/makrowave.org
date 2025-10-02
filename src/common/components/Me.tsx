@@ -3,13 +3,22 @@ import SteamIcon from '../components/icons/SteamIcon';
 import DiscordIcon from '../components/icons/DiscordIcon';
 import { EmailIcon } from '../components/icons/EmailIcon';
 import { GithubIcon } from '../components/icons/GithubIcon';
-import { Avatar, Badge, Link, Stack } from '@mui/material';
+import {
+  Avatar,
+  Badge,
+  Link,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 
 // Not reusable hehe but I dont like a lot of stuff in one place - my page my rules
 // Altough many rules are worth following in general - but this exception is fine
 const Me = () => {
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
   return (
-    <Stack gap={1}>
+    <Stack gap={1} direction={isMd ? 'row-reverse' : 'column'}>
       <Badge
         overlap="circular"
         badgeContent={
@@ -40,33 +49,38 @@ const Me = () => {
         <Avatar
           alt="Makrowave (Me)"
           src="/avatar.png"
-          sx={{ width: '250px', height: '250px', border: '2px solid white' }}
+          sx={{
+            width: '250px',
+            height: '250px',
+            border: '2px solid white',
+          }}
         />
       </Badge>
-
-      <Link href="#">
-        <DiscordIcon style={{ marginRight: '10px' }} />
-        makrowave
-      </Link>
-      <Link href="https://github.com/Makrowave" target="_blank">
-        <GithubIcon style={{ marginRight: '10px' }} />
-        Github
-      </Link>
-      <Link
-        href="https://bsky.app/profile/makrowave.bsky.social"
-        target="_blank"
-      >
-        <BlueskyIcon style={{ marginRight: '10px' }} />
-        Bluesky
-      </Link>
-      <Link href="https://steamcommunity.com/id/Makrowave" target="_blank">
-        <SteamIcon style={{ marginRight: '10px' }} />
-        Steam
-      </Link>
-      <Link href="mailto:maksstyzej@gmail.com" target="_blank">
-        <EmailIcon style={{ marginRight: '10px' }} />
-        maksstyzej@gmail.com
-      </Link>
+      <Stack justifyContent={'space-between'} paddingY={isMd ? 5 : 0} gap={1}>
+        <Link href="#">
+          <DiscordIcon style={{ marginRight: '10px' }} />
+          makrowave
+        </Link>
+        <Link href="https://github.com/Makrowave" target="_blank">
+          <GithubIcon style={{ marginRight: '10px' }} />
+          Github
+        </Link>
+        <Link
+          href="https://bsky.app/profile/makrowave.bsky.social"
+          target="_blank"
+        >
+          <BlueskyIcon style={{ marginRight: '10px' }} />
+          Bluesky
+        </Link>
+        <Link href="https://steamcommunity.com/id/Makrowave" target="_blank">
+          <SteamIcon style={{ marginRight: '10px' }} />
+          Steam
+        </Link>
+        <Link href="mailto:maksstyzej@gmail.com" target="_blank">
+          <EmailIcon style={{ marginRight: '10px' }} />
+          maksstyzej@gmail.com
+        </Link>
+      </Stack>
     </Stack>
   );
 };

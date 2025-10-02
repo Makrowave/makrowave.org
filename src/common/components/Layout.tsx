@@ -32,7 +32,17 @@ const Layout = () => {
         overflowY: 'auto',
       }}
     >
-      <Box sx={{ width: 1080, position: 'relative' }}>
+      <Box
+        sx={(theme) => ({
+          position: 'relative',
+          width: '100%',
+          // display: 'flex',
+          [theme.breakpoints.up('lg')]: {
+            width: 1200,
+            display: 'block',
+          },
+        })}
+      >
         <Navigation trigger={trigger} />
         <Box
           sx={{
