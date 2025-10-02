@@ -83,6 +83,7 @@ const TagsBar = ({ filterPostsCallback }: Props) => {
         display: 'flex',
         gap: 1,
         flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'flex-start',
       }}
     >

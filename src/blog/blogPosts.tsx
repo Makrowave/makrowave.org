@@ -1,6 +1,16 @@
+import { getStringDate } from './blogHelper';
 import type { Post } from './blogTypes';
 import MakingOf from './components/Posts/MakingOf.mdx';
+import CraftTweakerExample from './components/Posts/CraftTweakerExample.mdx';
 export const posts: Post[] = [
+  {
+    title: 'CraftTweaker code snippets',
+    tags: ['Minecraft', 'MC 1.21.1', 'CraftTweaker', 'Modding'],
+    subtitle: `Updated ${getStringDate(new Date('02-10-2025'))}`,
+    date: new Date('10-02-2025'),
+    href: 'crafttweaker-examples',
+    element: <CraftTweakerExample />,
+  },
   {
     title: 'Making of this site',
     tags: ['React', 'MUI', 'Motion', 'MDX', 'Makrowave'],

@@ -1,7 +1,7 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import type { Post } from '../blogTypes';
 import { Link } from 'react-router';
-import { getTitleColor } from '../blogHelper';
+import { getStringDate, getTitleColor } from '../blogHelper';
 import { motion } from 'framer-motion';
 const PostPreview = ({
   post,
@@ -35,11 +35,7 @@ const PostPreview = ({
               pr: 1,
             }}
           >
-            {post.date.toLocaleDateString('en', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-            })}
+            {getStringDate(post.date)}
           </Typography>
           {post.tags.map((t) => (
             <Typography variant="h6" sx={{ filter: 'brightness(70%)' }}>

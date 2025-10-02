@@ -1,0 +1,115 @@
+import CustomSyntaxHighlighter from '../../../common/components/CustomSyntaxHighlighter';
+import Link from '@mui/material/Link';
+
+# Hello!
+
+In this post I am going to leave some CraftTweaker examples with explanation what is going on.
+These snippets come from my and <Link href="https://github.com/Osariusz" >Osariusz</Link>'s' _unreleased_ modpack - [Kladipolis II](https://github.com/Makrowave/kladipolis).
+
+<br />
+**Disclaimer:** these snippets work on 1.21.1, I have no clue about other versions
+
+<br />
+While snippets might prove useful (I don't think I will post any trivial ones which
+have examples) some of them will have in depth explanation and be begginer friendly.
+
+If you don't know what <Link href="https://www.curseforge.com/minecraft/mc-mods/crafttweaker">CraftTweaker</Link>
+is, it is a minecraft mod that allows you to change the game using its scripting language - ZenScript.
+ZenScript is a mix between JS and TS with its own additions like this syntax: `<item:minecraft:diamond_hoe>` - item means type of Minecraft's asset I want to access, some of the others are tag, block, attribute.
+Then you can see "minecraft". It is a namespace, you can put other mod here like create or immersiveengineering and find their resources too. Then we have item id.
+
+Why use it?
+It makes it easier to work with some things than working with datapacks. I use both since both of them have their pros and cons.
+
+<br />
+**Alright, let's get into it!**
+<br />
+
+# Snippets
+
+## Make non standard (or standard) pickaxe mine obsidian.
+
+I had a problem some time ago - I removed diamond tools from my modpack and needed something to mine obsidian for progression.
+I wanted to modify steel pickaxe from Immersive Engineering. I tried added new tool components (more about that later),
+but after 30 minutes of looking at pickaxes tags and obsidian tags I've noticed that obsidian blocks pickaxes from mining by having a custom tag.
+
+<br />
+So for steel pickaxe this is your code snippet:
+<CustomSyntaxHighlighter language="javascript">
+  {`<tag:block:immersiveengineering:incorrect_for_steel_tool>.remove(<block:minecraft:obsidian>);`}
+</CustomSyntaxHighlighter>
+Note that in CraftTweaker you remove blocks from tags not vice versa. So pretty simple
+solution
+
+## Make armor cool or heat you up - Tough As Nails
+
+This one is simple, Tough As Nails has two tags for this. Simply make some arrays with armor or just add them one by line.
+
+<CustomSyntaxHighlighter language="javascript">
+{`var heating_armor = [
+    <item:magistuarmory:brigandine_chestplate>,
+    <item:magistuarmory:cuirassier_leggings>,
+    <item:magistuarmory:cuirassier_boots>,
+
+    <item:magistuarmory:coif>,
+    <item:magistuarmory:gambeson_chestplate>,
+    <item:magistuarmory:pantyhose>,
+    <item:magistuarmory:gambeson_boots>,
+
+    <item:magistuarmory:maximilian_helmet>,
+    <item:magistuarmory:maximilian_chestplate>,
+    <item:magistuarmory:maximilian_leggings>,
+    <item:magistuarmory:maximilian_boots>
+
+];
+
+for armor in heating_armor {
+    <tag:item:toughasnails:heating_armor>.add(armor);
+}
+
+for armor in cooling_armor {
+    <tag:item:toughasnails:cooling_armor>.add(armor);
+}`}
+</CustomSyntaxHighlighter>
+
+
+## Loot tables
+All right here is one quirk first: **enchanted items will not disappear**. I have no solution to this. <br/>
+With this out of the way lets whip out the example:
+<CustomSyntaxHighlighter language="javascript">
+{`
+import crafttweaker.api.loot.modifier.LootModifierManager;
+import crafttweaker.api.loot.modifier.CommonLootModifiers;
+import crafttweaker.api.loot.condition.RandomChanceLootCondition;
+import crafttweaker.api.ingredient.IIngredient;
+
+val chance = 0.05; // Float
+val chanceCondition = RandomChanceLootCondition.create(chance);
+val diamondLootModifier = CommonLootModifiers.add(<item:minecraft:diamond>);
+
+val lootModifierName = "myName";
+
+loot.modifiers.register(lootModifierName, chanceCondition, diamondLootModifier);`}
+</CustomSyntaxHighlighter>
+
+This one is simple so you can get hang of it.
+So what happens?
+To register a loot modifier - which is an addition (or removal) of item to loot tables, you need 3 things in the register function:
+- name
+- LootCondition
+- LootModifier
+
+### Loot Condition
+This is a condition like in advancement, but for loot.
+There are many predefined conditions from vanilla but there are some which are modded and maybe you can script them but I am not sure. <br/>
+This one is just a random chance. There are many predefined LootConditions on CraftTweaker wiki like for example `LootTableIdLootCondition` which is handy.
+All these modifiers implement ILootCondition interface so they are swappable and can be assigned to the function.
+
+Later example will show how to join them.
+
+### LootModifier
+This is a detail on why and how loot should be given. This is a basic one to use with a loot table.
+
+# Actually I need to scrap that because I just learned how to do that properly...
+
+Well more to come

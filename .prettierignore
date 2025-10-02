@@ -1,7 +1,6 @@
 # Ignore files:
 .eslintignore
 index.js
-/src/version.ts
 
 # Ignore artifacts:
 build
@@ -9,3 +8,5 @@ coverage
 
 # Ignore all HTML files:
 *.html
+
+**/*.mdx

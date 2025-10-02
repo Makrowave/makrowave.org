@@ -40,3 +40,11 @@ export const generateGradient = (tag: string) => {
 
   return `linear-gradient(${rotation}deg, ${colors[0]}, ${colors[1]})`;
 };
+
+export const getStringDate = (date: Date) => {
+  return date.toLocaleDateString('en', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+};
