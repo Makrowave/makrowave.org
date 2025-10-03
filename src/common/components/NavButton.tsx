@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 import type { Page } from './SlidingAppBar';
-import { Link, Typography } from '@mui/material';
+import { Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 const NavButton = ({
   page,
@@ -16,6 +16,8 @@ const NavButton = ({
   const gradient =
     'linear-gradient(to right, rgba(225,155,255,1), rgba(255,255,255,1), rgba(169,252,214,1))';
 
+  const theme = useTheme();
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Link
       fontSize={24}
@@ -56,7 +58,7 @@ const NavButton = ({
         },
       }}
     >
-      <Typography variant="h5">{page.label}</Typography>
+      <Typography variant={isSm ? 'subtitle1' : 'h5'}>{page.label}</Typography>
     </Link>
   );
 };

@@ -1,18 +1,19 @@
 import { Box } from '@mui/material';
+import type { ReactNode } from 'react';
 import { Outlet } from 'react-router';
 
-const PostWrapper = () => {
+const MdxWrapper = ({ children }: { children?: ReactNode }) => {
   return (
     <Box
       sx={{
         mx: '25px',
         fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
         color: 'white',
-        p: 2,
-        '& h1, & h2': {
+        p: children ? 0 : 2,
+        '& h1, & h2, & h3, & h4': {
           color: 'white',
         },
-        '& h3, & h4, & h5, & h6': {
+        '& h5, & h6': {
           color: 'gray',
         },
         '& p': {
@@ -23,12 +24,6 @@ const PostWrapper = () => {
           color: 'secondary.main',
           textDecoration: 'underline',
         },
-        // '& code': {
-        //   fontFamily: 'monospace',
-        //   bgcolor: 'grey.100',
-        //   px: 0.5,
-        //   borderRadius: 1,
-        // },
         '& ul, & ol': {
           pl: 4,
           mb: 2,
@@ -38,9 +33,9 @@ const PostWrapper = () => {
         },
       }}
     >
-      <Outlet />
+      {children ? children : <Outlet />}
     </Box>
   );
 };
 
-export default PostWrapper;
+export default MdxWrapper;
